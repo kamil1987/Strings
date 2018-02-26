@@ -1,0 +1,76 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int len = in.nextInt();
+        String s = in.next();
+        char [] array = s.toCharArray();
+        char [] occuredChars = isolateLettersTypes(array);
+        int longestT = checkSequence(occuredChars,array );
+        System.out.print(longestT);
+        
+    }
+    
+    public static int checkSequence (char [] occuredChars, char [] array  ){
+        int longestT = 0 ;
+        for(int ext_i = 0 ; ext_i < occuredChars.length-1 ; ext_i++){
+            for(int ins_i = 1 ; ins_i < occuredChars.length  ; ins_i++){
+                 
+                char [] seq = removeSigns(occuredChars[ext_i], occuredChars[ins_i], array);
+                if (validateT(seq) && seq.length > longestT) longestT = seq.length ; 
+            }
+        }
+        return longestT;
+    }
+    
+    public static char [] removeSigns (char a, char b, char [] array){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0 ; i < array.length ; i++){
+            
+            if(array[i] == a || array[i] == b) stringBuilder.append(array[i]); 
+        }
+        
+        return stringBuilder.toString().toCharArray();
+    }
+    
+    public static boolean validateT (char [] sequence){
+        for(int i = 0 ; i <sequence.length ; i++){
+            
+            if (i == sequence.length - 1) return true;
+            if (sequence[i] ==  sequence[i + 1]  ) return false;
+        } 
+        return false;
+    }
+    
+    public static char [] isolateLettersTypes(char [] array){
+        char [] alphabet  = createAlphabet();
+        char [] arrayOccuredChars ;
+        List <Character> occuredChars = new ArrayList <Character> ();
+        for(char sign : array){
+             int charIndex = Arrays.binarySearch(alphabet,sign);
+                 occuredChars.add(sign);
+
+        }
+        arrayOccuredChars = new char [occuredChars.size()];
+        int index = 0 ;
+        for(Character sign : occuredChars){
+            arrayOccuredChars[index] = sign.charValue() ;
+            index++;
+        }
+        return arrayOccuredChars;
+    }
+   
+    public static char [] createAlphabet(){
+        char [] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+         Arrays.sort(alphabet);
+         return alphabet;
+    }
+    
+    
+}

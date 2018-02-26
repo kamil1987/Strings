@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        int [] weights = f(s.toCharArray());
+        Arrays.sort(weights);
+        int n = in.nextInt();
+        
+        for(int a0 = 0; a0 < n; a0++){
+            int x = in.nextInt();
+            if (Arrays.binarySearch(weights, x) >= 0) System.out.println("Yes");
+            else System.out.println("No");
+        }
+    }
+    
+     //cos tu jest zle 
+    public static int []  f(char[] sTable){
+        List <Integer> weights = new ArrayList <Integer> ();
+        int tempWeights = (int)sTable[0]- 96;
+        weights.add(tempWeights);
+        char prev = sTable[0];
+       for(int i = 1; i < sTable.length; i++){
+            if(sTable[i] != prev){
+                tempWeights = (int)sTable[i] - 96;
+                weights.add(tempWeights);
+            }else{
+                tempWeights +=  ( (int)sTable[i]- 96 );
+                weights.add(tempWeights);
+            }
+            prev = sTable[i];
+            
+        }
+        int[] weightsTable = new int [weights.size()];
+        int s = 0;
+        for(int i = 0; i < weights.size(); i++){
+            weightsTable[i] = weights.get(i); 
+        } 
+          
+        return weightsTable;
+        
+    }
+}

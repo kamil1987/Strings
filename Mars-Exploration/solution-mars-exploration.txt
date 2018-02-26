@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String S = in.next();
+        char [] sTable = S.toCharArray();
+        char [] sosTable = {'S','O','S'};
+        int sos_i = 0;
+        int counter = 0 ;
+        for(int i = 0; i < sTable.length;i++){
+            if(sTable[i] != sosTable[sos_i]) counter++;
+            sos_i++;
+            if(sos_i % 3 == 0) sos_i = 0;
+        }
+        System.out.print(counter);
+    }
+}

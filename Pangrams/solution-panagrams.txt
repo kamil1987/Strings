@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String args[] ) throws Exception {
+        Scanner in = new Scanner (System.in);
+        String s = in.nextLine();
+        char [] sTable = s.toCharArray();
+        Arrays.sort(sTable);
+          System.out.println(checkPangram(sTable));  
+        
+    }
+    
+    public static String checkPangram( char [] sTable){
+        char [] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        char [] upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray() ;
+        int counter = 0;
+         
+         for(int i = 0; i < alphabet.length ; i++){
+            if(Arrays.binarySearch(sTable,alphabet[i]) < 0 ){
+                if (Arrays.binarySearch(sTable,upperAlphabet[i]) < 0) {
+                     return "not pangram";
+                 }
+            }
+        }
+        return"pangram";
+    }
+}

@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String super_reduced_string(String s){
+        
+        boolean reduced = true ;
+        char[] arrayS = s.toCharArray(); 
+        StringBuilder tempString = new StringBuilder();
+        char next = ' ';
+        
+        for (int i = 0 ; i <arrayS.length ; i++){
+                if(i < arrayS.length-1 ){
+                    next = arrayS[i + 1];
+                } else next = ' ';
+                if (arrayS[i] != next) {
+                    tempString.append(arrayS[i]);
+                }else{
+                    reduced = false ;
+                    i++;
+                }
+            }
+        
+        if(tempString.length() == 0) return "Empty String";
+        else if(reduced == false) return super_reduced_string(tempString.toString());
+        else return tempString.toString();
+        
+    }
+    
+ 
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        String result = super_reduced_string(s);
+        System.out.println(result);
+    }
+}

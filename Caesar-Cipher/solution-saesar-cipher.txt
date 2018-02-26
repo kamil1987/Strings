@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        String s = in.next();
+        int k = in.nextInt();
+        char [] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        char [] upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray() ;
+        char [] sTable = s.toCharArray();
+        //if (k > 26) k = k % 26 ;
+         for(int i = 0; i < n ; i++){
+             if((sTable[i] >= 65 && sTable[i] <= 90 ) || (sTable[i] >= 97 && sTable[i] <= 122 )){
+                  if (Character.isLowerCase(sTable[i])){
+                     int indexOfLetter = Arrays.binarySearch(alphabet,sTable[i]);
+                     sTable[i] = alphabet[(indexOfLetter + k) % 26];
+                      System.out.print(sTable[i]);
+                    }else{
+                     int indexOfLetter = Arrays.binarySearch(upperAlphabet,sTable[i]);
+                     sTable[i] = upperAlphabet[(indexOfLetter + k) % 26];
+                      System.out.print(sTable[i]);
+                 } 
+             }else {
+                 System.out.print(sTable[i]);
+             }
+            
+         }
+        
+      
+      }
+
+}

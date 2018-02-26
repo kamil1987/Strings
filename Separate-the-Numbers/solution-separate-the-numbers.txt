@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int q = in.nextInt();
+        for(int a0 = 0; a0 < q; a0++){
+            String s = in.next();
+            System.out.println(f(s));
+            
+            
+        }
+    }
+    
+    public static String f( String s){
+        StringBuilder temp = new StringBuilder("");
+        int sLength = s.length();
+        
+        for (int j = 1; j < (int)sLength/2+1; j++){
+            long firstValue =Long.parseLong(s.substring(0, j)) ;
+            temp.append(firstValue);
+            long nextValue = firstValue ;
+            for (int i = 0; i < sLength; i++){
+                if (temp.toString().equals(s)) return "YES " + firstValue;
+                nextValue++;
+                temp.append(nextValue);
+                if (temp.length() > sLength){
+                   temp.setLength(0);
+                   break;
+                }
+            }
+
+        }
+        return "NO";
+        
+            
+    }
+}

@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        char [] array = s.toCharArray();
+        int numberOfWords = 1;
+        
+        for(char sign : array){
+            if (sign >= 'A' && sign <= 'Z') numberOfWords++;
+            
+        }
+        System.out.print(numberOfWords);
+           
+    }
+}
